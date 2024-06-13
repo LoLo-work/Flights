@@ -1,0 +1,44 @@
+{
+  "name": "flights",
+  "version": "1.0.0",
+  "description": "This is the final project for Module 293 at BBW BFS (Berufsbildung Winterthur). The project is developed using React.js and showcases the application of skills and knowledge in web development, specifically using the React framework. This final project is a practical demonstration of the concepts covered in this module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoLo-work/Flights.git"
+  },
+  "keywords": [
+    "React",
+    "Next",
+    "Reactjs",
+    "Nextjs",
+    "PrimeReact",
+    "PrimeFlex",
+    "PrimeIcons",
+    "final",
+    "project"
+  ],
+  "author": "github.com/LoLo-work && github.com/RomanBerli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoLo-work/Flights/issues"
+  },
+  "homepage": "https://github.com/LoLo-work/Flights#readme",
+  "dependencies": {
+    "jotai": "^2.8.3",
+    "next": "^14.2.4",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.6.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "typescript": "^5.4.5"
+  }
+}
