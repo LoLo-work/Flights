@@ -2,9 +2,10 @@
 .idea/
 
 # node
-node_modules/
+Flights/node_modules
+Server/node_modules
 
 # next
-.next/
+Flights/.next/
 
 

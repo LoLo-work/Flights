@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "This is the final project for Module 293 at BBW BFS (Berufsbildung Winterthur). The project is developed using React.js and showcases the application of skills and knowledge in web development, specifically using the React framework. This final project is a practical demonstration of the concepts covered in this module.",
+  "main": "index.js",
+  "scripts": {
+    "json": "json-server-auth --watch db.json -p 3001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoLo-work/Flights.git"
+  },
+  "keywords": [
+    "JsonServer",
+    "Server",
+    "Auth"
+  ],
+  "author": "github.com/LoLo-work && github.com/RomanBerli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoLo-work/Flights/issues"
+  },
+  "homepage": "https://github.com/LoLo-work/Flights#readme",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.1",
+    "json-server-auth": "^2.1.0"
+  }
+}
