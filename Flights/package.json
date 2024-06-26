@@ -4,7 +4,7 @@
   "description": "This is the final project for Module 293 at BBW BFS (Berufsbildung Winterthur). The project is developed using React.js and showcases the application of skills and knowledge in web development, specifically using the React framework. This final project is a practical demonstration of the concepts covered in this module.",
   "main": "index.js",
   "scripts": {
-    "test": "next dev"
+    "dev": "next dev"
   },
   "repository": {
     "type": "git",

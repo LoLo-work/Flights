@@ -21,7 +21,7 @@ export function useSession() {
     const [isLoading, setIsLoading] = useAtom(isLoadingAtom);
 
     useEffect(() => {
-        const savedSession = localStorage.getItem(STORAGE_KEY);
+        const savedSession:string | null = localStorage.getItem(STORAGE_KEY);
 
         if (savedSession) {
             try {
@@ -33,7 +33,7 @@ export function useSession() {
         setIsLoading(false);
     }, [setSession, setIsLoading]);
 
-    const signIn = (newSession: Session) => {
+    const signIn = (newSession: Session):void => {
         if (!newSession.token || !newSession.user) {
             throw new Error("Token and user must be supplied to signIn()!");
         }
@@ -41,7 +41,7 @@ export function useSession() {
         setSession(newSession);
     }
 
-    const signOut = () => {
+    const signOut = ():void => {
         localStorage.removeItem(STORAGE_KEY);
         setSession(defaultSession);
     }
