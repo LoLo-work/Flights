@@ -5,6 +5,10 @@ import { InputNumber } from 'primereact/inputnumber';
 import { FloatLabel } from 'primereact/floatlabel';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
+import { Calendar } from 'primereact/calendar';
+import { ToggleButton } from 'primereact/togglebutton';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 export default function SearchFlight() {
     const [selectedAirportVon, setSelectedAirportVon] = useState(null);
@@ -12,17 +16,16 @@ export default function SearchFlight() {
     const [loading, setLoading] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
     const [isFormValid, setIsFormValid] = useState(false);
-    const [flight, setFlight] = useState(null);
     const [flightSearched, setFlightSearched] = useState(false);
+    const [date, setDate] = useState(null);
+    const [time, setTime] = useState(null);
+    const [checked, setChecked] = useState(false);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const isValid = selectedAirportVon && selectedAirportNach;
+        const isValid = selectedAirportVon && selectedAirportNach && date && time;
         setIsFormValid(isValid);
-
-        const isvalidflights = flight
-        const setFlightSearched = isvalidflights
-
-    }, [selectedAirportVon, selectedAirportNach, flight, flightSearched]);
+    }, [selectedAirportVon, selectedAirportNach, date, time]);
 
     const classes = [
         { name: 'First Class', code: 'FIRS' },
@@ -33,13 +36,49 @@ export default function SearchFlight() {
 
     const load = () => {
         setLoading(true);
-        console.log(selectedAirportVon, selectedAirportNach);
-        
-        //Fetch
 
         setTimeout(() => {
             setLoading(false);
-        }, 3000); // Ändern zu längerem Delay --> Idee: So langes er hört nicht auf zu spinnen, und wir leiten weiter
+            setFlightSearched(true); // Flug wurde gesucht, Tabelle anzeigen
+            console.log({
+                VonAirport: selectedAirportVon.aname,
+                NachAirport: selectedAirportNach.aname,
+                Date: date,
+                Time: time,
+                Airline: "Swiss",
+                Price: 703
+            })
+            setProducts([
+                {
+                    VonAirport: selectedAirportVon.aname,
+                    NachAirport: selectedAirportNach.aname,
+                    Date: "26.06.2024",
+                    StartTime: "10:35",
+                    LandeTime: "13:00",
+                    Airline: "Swiss",
+                    Klasse: selectedClass[0].name,
+                    Price: 703
+                },{
+                    VonAirport: selectedAirportVon.aname,
+                    NachAirport: selectedAirportNach.aname,
+                    Date: "26.06.2024",
+                    StartTime: "11:00",
+                    LandeTime: "14:25",
+                    Airline: "Swiss",
+                    Klasse: selectedClass[0].name,
+                    Price: 703
+                },{
+                    VonAirport: selectedAirportVon.aname,
+                    NachAirport: selectedAirportNach.aname,
+                    Date: "26.06.2024",
+                    StartTime: "12:00",
+                    LandeTime: "15:30",
+                    Airline: "EasyJet",
+                    Klasse: selectedClass[0].name,
+                    Price: 500
+                }
+            ]);
+        }, 3000); // Simulierter Ladevorgang
     };
 
     const countries = [
@@ -96,60 +135,79 @@ export default function SearchFlight() {
             <h2>Flüge suchen</h2>
             <br />
             <div className="card flex flex-column md:flex-row gap-4">
-
                 <div className="p-inputgroup flex-1">
                     <FloatLabel>
                         <CascadeSelect id='von' value={selectedAirportVon} onChange={e => setSelectedAirportVon(e.value)} options={countries}
                             optionLabel="aname" optionGroupLabel="name" optionGroupChildren={['airports']}
                             className="w-full md:w-14rem" breakpoint="767px" itemTemplate={countryOptionTemplate} style={{ minWidth: '14rem' }} />
-                        <label for="von">Von:</label>
+                        <label htmlFor="von">Von:</label>
                     </FloatLabel>
                 </div>
-
                 <div className="p-inputgroup flex-1">
                     <FloatLabel>
                         <CascadeSelect id='nach' value={selectedAirportNach} onChange={e => setSelectedAirportNach(e.value)} options={countries}
                             optionLabel="aname" optionGroupLabel="name" optionGroupChildren={['airports']}
                             className="w-full md:w-14rem" breakpoint="767px" itemTemplate={countryOptionTemplate} style={{ minWidth: '14rem' }} />
-                        <label for="nach">Nach:</label>
+                        <label htmlFor="nach">Nach:</label>
                     </FloatLabel>
                 </div>
-
+            </div>
+            <br />
+            <div className="card flex flex-column md:flex-row gap-4">
                 <div className="p-inputgroup flex-1">
                     <FloatLabel>
                         <MultiSelect id='class' value={selectedClass} onChange={(e) => setSelectedClass(e.value)} options={classes} optionLabel="name" display="chip"
                             maxSelectedLabels={3} className="w-full md:w-20rem" />
-                        <label for="class">Klasse:</label>
+                        <label htmlFor="class">Klasse:</label>
                     </FloatLabel>
                 </div>
-
-               
+                <div className="p-inputgroup flex-1">
+                    <FloatLabel>
+                        <Calendar id="date" value={date} onChange={(e) => setDate(e.value)} showButtonBar />
+                        <label htmlFor="date">Datum</label>
+                    </FloatLabel>
+                </div>
+                <div className="p-inputgroup flex-1">
+                    <FloatLabel>
+                        <Calendar id='time' value={time} onChange={(e) => setTime(e.value)} timeOnly />
+                        <label htmlFor="time">Zeit</label>
+                    </FloatLabel>
+                    <ToggleButton onLabel="Abfahrt" offLabel="Ankunft" onIcon="pi pi-arrow-left" offIcon="pi pi-arrow-right"
+                        checked={checked} onChange={(e) => setChecked(e.value)} className="w-9rem" />
+                </div>
             </div>
             <br />
             <div className="flex align-items-center justify-content-center p-5">
-            <Button
+                <Button
                     label="Suchen"
                     icon={isFormValid ? "pi pi-check" : "pi pi-times"}
                     disabled={!isFormValid}
                     loading={loading}
                     onClick={load}
-                    style={{margin : '1rem'}}
+                    style={{ margin: '1rem' }}
                 />
                 <Button
                     label="Merken"
                     icon={flightSearched ? "pi pi-save" : "pi pi-times"}
-                    disabled={!flightSearched} style={{margin : '1rem'}}
+                    disabled={!flightSearched} style={{ margin: '1rem' }}
                 />
             </div>
 
-            <div>
-            {/* Hier können wir die Antwort Mappen
-            
-            <h2>Ihr Flug:</h2>
-            */}
-
-
-            </div>
+            {flightSearched && (
+                <div>
+                    <h2>Ihr Flug:</h2>
+                    <DataTable value={products} tableStyle={{ minWidth: '50rem' }}>
+                        <Column field="VonAirport" header="Von"></Column>
+                        <Column field="NachAirport" header="Nach"></Column>
+                        <Column field="Date" header="Datum"></Column>
+                        <Column field="StartTime" header="Abflugszeit"></Column>
+                        <Column field="LandeTime" header="Ankunftszeit"></Column>
+                        <Column field="Airline" header="Airline"></Column>
+                        <Column field="Klasse" header="Klasse"></Column>
+                        <Column field="Price" header="Preis"></Column>
+                    </DataTable>
+                </div>
+            )}
         </div>
     );
 }

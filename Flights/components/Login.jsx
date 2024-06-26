@@ -31,10 +31,10 @@ export default function Login() {
                 <h2>Login</h2>
 
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="username">Benutzername</label>
+                    <label htmlFor="username">E-Mail</label>
                     <InputText id="username" aria-describedby="username-help" value={username} onChange={(e) => setUsername(e.target.value)} />
                     <small id="username-help">
-                        Geben Sie Ihren Benutzernamen ein.
+                        Geben Sie Ihre E-Mail ein.
                     </small>
                 </div>
 

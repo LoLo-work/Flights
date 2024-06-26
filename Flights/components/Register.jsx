@@ -16,11 +16,14 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
+    const [lastname, setLastname] = useState('');
+    const [firstname, setFirstname] = useState('');
+
 
     useEffect(() => {
-        const isValid = username && date && selectedGender && password;
+        const isValid = username && date && selectedGender && password && firstname && lastname;
         setIsFormValid(isValid);
-    }, [username, date, selectedGender, password]);
+    }, [username, date, selectedGender, password, firstname, lastname]);
 
     const load = () => {
         setLoading(true);
@@ -37,12 +40,32 @@ export default function Register() {
         <div>
             <div className='m-7'>
                 <h2>Registrieren</h2>
-
+                
                 <div className="flex flex-column gap-2">
-                    <label htmlFor="username">Benutzername</label>
+                    <label htmlFor="firstname">Vorname</label>
+                    <InputText id="firstname" aria-describedby="firstname-help" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+                    <small id="firstname-help">
+                        Geben Sie ihren Vornamen ein.
+                    </small>
+                </div>
+
+                <hr />
+                <br />
+                <div className="flex flex-column gap-2">
+                    <label htmlFor="lastname">Name</label>
+                    <InputText id="lastname" aria-describedby="lastname-help" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+                    <small id="lastname-help">
+                        Geben Sie ihren Namen ein.
+                    </small>
+                </div>
+
+                <hr />
+                <br />
+                <div className="flex flex-column gap-2">
+                    <label htmlFor="username">E-Mail</label>
                     <InputText id="username" aria-describedby="username-help" value={username} onChange={(e) => setUsername(e.target.value)} />
                     <small id="username-help">
-                        Wählen Sie Ihren Benutzernamen.
+                        Geben Sie ihre E-Mail ein.
                     </small>
                 </div>
 
