@@ -6,9 +6,11 @@ export default function Header() {
     //Add link to homepage!
     const startContent = (
         <React.Fragment>
+            <a href="/home">
                 <button className="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
                 <i className="pi pi-home text-2xl"></i>
                 </button>
+            </a>
         </React.Fragment>
     );
 
@@ -25,9 +27,11 @@ export default function Header() {
     //Add link to Users!
     const endContent = (
         <React.Fragment>
+            <a href="/user">
             <button className="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
                 <i className="pi pi-user text-2xl"></i>
             </button>
+            </a>
         </React.Fragment>
     );
 

@@ -94,7 +94,7 @@ export default function FlightsTable() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id: 1,
+                user_id: 1,
                 title: title,
                 flight_id: selectedProduct.id,
             }),
