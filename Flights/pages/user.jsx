@@ -9,15 +9,21 @@ export default function UserPage() {
 
   return (
     <div>
-        <Header></Header>
-        <br />
-        <AccountData></AccountData>
-        <br />
-        <br />
-        <SavedFlights></SavedFlights>
-        <br />
-        <br />
-        <Footer></Footer>
+      <Header></Header>
+      <br />
+      <AccountData></AccountData>
+      <br />
+      <br />
+      <SavedFlights></SavedFlights>
+      <br />
+      <br />
+      <Footer></Footer>
     </div>
   );
 };
+
+//export async function getStaticProps(context) { 
+//  return { 
+//    props: { secured: true } 
+//  } 
+//}

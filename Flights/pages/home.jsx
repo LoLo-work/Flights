@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import SearchFlight from 'components/SearchFlight';
+import SearchFlight from 'components/FlightsTable';
 
 export default function HomePage() {
 

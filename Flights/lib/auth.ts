@@ -36,13 +36,13 @@ interface RegisterResponse {
     }
 }
 
-export async function login({email, password}: LoginRequest): Promise<LoginResponse> {
+export async function login({ email, password }: LoginRequest): Promise<LoginResponse> {
     const response: Response = await fetch(`${URL}/login`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({ email, password })
     });
 
     if (!response.ok) {
@@ -52,19 +52,19 @@ export async function login({email, password}: LoginRequest): Promise<LoginRespo
 }
 
 export async function register({
-                                   surname,
-                                   lastname,
-                                   email,
-                                   birthdate,
-                                   gender,
-                                   password
-                               }: RegisterRequest): Promise<RegisterResponse> {
+    surname,
+    lastname,
+    email,
+    birthdate,
+    gender,
+    password
+}: RegisterRequest): Promise<RegisterResponse> {
     const response: Response = await fetch(`${URL}/register`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({surname, lastname, email, birthdate, gender, password})
+        body: JSON.stringify({ surname, lastname, email, birthdate, gender, password })
     });
 
     if (!response.ok) {
